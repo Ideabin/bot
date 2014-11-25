@@ -21,6 +21,26 @@ def init():
         create_tables(con)
 
 
+def write(con, sql, values):
+    """ Execute an Insert SQL Query. """
+
+    with con:
+        con.cursor().execute(sql, values)
+        con.commit()
+
+
+def read(con, sql):
+    """ Perform read operations on the databse. """
+
+    result = None
+    with con:
+        cur = con.cursor()
+        cur.execute(sql)
+        result = cur.fetchall()
+
+    return result
+
+
 def create_tables(con):
     """ Create tables. """
 

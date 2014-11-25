@@ -9,6 +9,24 @@ import db
 User = namedtuple('User', 'username, twitter, email, last_fetch')
 
 
+def add(user):
+    """ Create a new user. """
+
+    sql = "INSERT INTO users VALUES (?, ?, ?, ?);"
+    try:
+        db.write(db.con, sql, user)
+    except sqlite3.IntegrityError:
+        # Do nothing when the record already exists
+        pass
+
+
+def all():
+    """ Return all users in the database. """
+
+    fetchall = db.read(db.con, "SELECT * FROM users;")
+    return map(User._make, fetchall)
+
+
 def fetch_registered():
     """
     Fetch all registered users from the repository.
