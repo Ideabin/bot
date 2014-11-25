@@ -1,4 +1,3 @@
-bot
-===
+# The Ideabin Bots
 
-The bot that fetches gists and shares the ideas to the world.
+Bots that do all sorts of awesome stuff.
