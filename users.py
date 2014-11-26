@@ -21,8 +21,8 @@ def add(user):
         pass
 
 
-def all():
-    """ Return all users in the database. """
+def get_all():
+    """ Return all users present in the database. """
 
     fetchall = db.read(db.con, "SELECT * FROM users;")
     return map(User._make, fetchall)
