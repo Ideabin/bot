@@ -11,7 +11,7 @@ config.read(os.path.join(CURRENT_DIR, 'config.ini'))
 
 DATABASE = config["Database"]["File"]
 
-con = sqlite3.connect(DATABASE)
+con = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
 
 
 def init():
@@ -63,31 +63,17 @@ def create_tables(con):
     cur.execute(
         """
         CREATE TABLE IF NOT EXISTS ideas (
-            username     VARCHAR( 200 )     PRIMARY KEY
-                                            NOT NULL,
+            username    VARCHAR( 200 )  PRIMARY KEY
+                                        NOT NULL,
 
-            gistid       VARCHAR( 20 )      NOT NULL
-                                            UNIQUE,
+            gistid      VARCHAR( 20 )   NOT NULL
+                                        UNIQUE,
 
             description VARCHAR( 500 ),
 
-            FOREIGN KEY(username) REFERENCES users(username)
-        );
-        """
-    )
+            tweetid     INT( 20 )       UNIQUE,
 
-    cur.execute(
-        """
-        CREATE TABLE IF NOT EXISTS tweets (
-            username     VARCHAR( 200 )     PRIMARY KEY
-                                            NOT NULL,
-
-            tweetid      VARCHAR( 20 )      NOT NULL
-                                            UNIQUE,
-
-            message      VARCHAR( 140 ),
-
-            FOREIGN KEY(username) REFERENCES users(username)
+            FOREIGN KEY ( username )    REFERENCES users ( username )
         );
         """
     )
