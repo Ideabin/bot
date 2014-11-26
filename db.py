@@ -55,7 +55,7 @@ def create_tables(con):
 
             email       VARCHAR( 200 )      UNIQUE,
 
-            last_fetch  DATETIME
+            last_fetch  TIMESTAMP
         );
         """
     )

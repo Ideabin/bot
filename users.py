@@ -1,6 +1,7 @@
 """ User related functions. """
 
 import sqlite3
+import datetime as dt
 from collections import namedtuple
 from urllib.request import urlopen
 
@@ -25,6 +26,13 @@ def all():
 
     fetchall = db.read(db.con, "SELECT * FROM users;")
     return map(User._make, fetchall)
+
+
+def update_last_fetch(user):
+    """ Set the last_fetch time of the user to the current time. """
+
+    sql = "UPDATE users SET last_fetch = (?) WHERE username = (?);"
+    db.write(db.con, sql, (dt.datetime.now(), user.username))
 
 
 def fetch_registered():
