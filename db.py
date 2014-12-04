@@ -66,13 +66,14 @@ def create_tables(con):
     cur.execute(
         """
         CREATE TABLE IF NOT EXISTS ideas (
-            username    VARCHAR( 200 )  PRIMARY KEY
+            gistid      VARCHAR( 20 )   PRIMARY KEY
                                         NOT NULL,
 
-            gistid      VARCHAR( 20 )   NOT NULL
-                                        UNIQUE,
+            username    VARCHAR( 200 )  NOT NULL,
 
             description VARCHAR( 500 ),
+
+            created_at  TIMESTAMP,
 
             tweetid     INT( 20 )       UNIQUE,
 

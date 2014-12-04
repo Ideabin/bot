@@ -13,14 +13,14 @@ import db
 
 GISTS_URL = "https://api.github.com/users/{0}/gists?"
 
-Idea = namedtuple('Idea', 'username, gistid, description, tweetid')
+Idea = namedtuple('Idea', 'gistid, username, description, created_at, tweetid')
 
 
 def add(user, gist):
-    """ Create a new user. """
+    """ Create a new idea. """
 
-    idea = Idea(user.username, gist['id'], gist['description'], None)
-    sql = "INSERT INTO ideas VALUES (?, ?, ?, ?);"
+    idea = Idea(gist['id'], user.username, gist['description'], gist['created_at'], None)
+    sql = "INSERT INTO ideas VALUES (?, ?, ?, ?, ?);"
     try:
         db.write(db.con, sql, idea)
     except sqlite3.IntegrityError:
