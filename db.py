@@ -29,13 +29,16 @@ def write(con, sql, values):
         con.commit()
 
 
-def read(con, sql):
+def read(con, sql, values=None):
     """ Perform read operations on the databse. """
 
     result = None
     with con:
-        cur = con.cursor()
-        cur.execute(sql)
+        if values:
+            cur = con.cursor().execute(sql, values)
+        else:
+            cur = con.cursor().execute(sql)
+
         result = cur.fetchall()
 
     return result
