@@ -19,7 +19,8 @@ Idea = namedtuple('Idea', 'gistid, username, description, created_at, tweetid')
 def add(user, gist):
     """ Create a new idea. """
 
-    idea = Idea(gist['id'], user.username, gist['description'], gist['created_at'], None)
+    idea = Idea(gist['id'], user.username, gist['description'],
+                gist['created_at'], None)
     sql = "INSERT INTO ideas VALUES (?, ?, ?, ?, ?);"
     try:
         db.write(db.con, sql, idea)
@@ -38,10 +39,11 @@ def fetch_gists(user):
     }
 
     if user.last_fetch:
-        params['since'] = dt.datetime.isoformat(user.last_fetch)
+        lf = dt.datetime.strptime(user.last_fetch, "%Y-%m-%d %H:%M:%S.%f")
+        params['since'] = dt.datetime.isoformat(lf)
 
     try:
-        data = urlopen(url+urlencode(params)).read().decode('utf-8')
+        data = urlopen(url + urlencode(params)).read().decode('utf-8')
     except:
         data = []
     else:

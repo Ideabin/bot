@@ -11,7 +11,9 @@ config.read(os.path.join(CURRENT_DIR, 'config.ini'))
 
 DATABASE = config["Database"]["File"]
 
-con = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
+# Detect no types. We'll parse everything on our own.
+# Done because reading Idea.created_at was causing problems.
+con = sqlite3.connect(DATABASE, detect_types=0)
 
 
 def init():
