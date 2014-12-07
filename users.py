@@ -28,6 +28,14 @@ def get_all():
     return map(User._make, fetchall)
 
 
+def from_name(username):
+    """ Return a user with the passed username. """
+
+    sql = "SELECT * FROM users WHERE username = (?);"
+    row = db.read(db.con, sql, (username,))
+    return User._make(row[0])
+
+
 def update_last_fetch(user):
     """ Set the last_fetch time of the user to the current time. """
 
