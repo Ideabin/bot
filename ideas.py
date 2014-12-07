@@ -24,9 +24,24 @@ def add(user, gist):
     sql = "INSERT INTO ideas VALUES (?, ?, ?, ?, ?);"
     try:
         db.write(db.con, sql, idea)
+        return idea
     except sqlite3.IntegrityError:
-        pass
+        return None
 
+
+def get_untweeted():
+    """ Return ideas that haven't been tweeted yet. """
+
+    sql = "SELECT * FROM ideas WHERE tweetid IS NULL;"
+    fetchall = db.read(db.con, sql, None)
+    return map(Idea._make, fetchall)
+
+
+def set_tweetid(idea, tid):
+    """ Set the tweetid of the idea to the passed value. """
+
+    sql = "UPDATE ideas SET tweetid = (?) WHERE gistid = (?);"
+    db.write(db.con, sql, (tid, idea.gistid))
 
 
 def fetch_gists(user):
