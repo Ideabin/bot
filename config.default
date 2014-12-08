@@ -1,0 +1,15 @@
+[Database]
+File =
+
+[Github]
+Client_Id =
+Client_Secret =
+
+[Twitter]
+Consumer_Key =
+Consumer_Secret =
+Access_Token_Key =
+Access_Token_Secret =
+
+[Constants]
+Tweets_Per_Hour =
