@@ -16,16 +16,16 @@ It tweets fifteen un-tweeted ideas every time it runs.
 
 A limit has been placed so that we don't accidently cross Twitter tweet limits.
 
+### Azeema
+
+This bot will watch our Twitter account for any new mentions and will auto reply to them.
+
 ## Todo
 
-We've thought of two more bots that we still have to do:
+We've thought of one more bot that we still have to do:
 
 ### Bushra
 
 This bot will send out dail or weekly mails (to the people who want them) which will contain a summary of ideas that have been added during that period.
 
 @akifkhan suggested the use of Send Grid's API to send mails, so we could look into it.
-
-### Azeema
-
-This bot will watch our Twitter account for any new mentions and will retweet them. It could also auto reply to them.

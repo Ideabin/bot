@@ -11,5 +11,9 @@ Consumer_Secret =
 Access_Token_Key =
 Access_Token_Secret =
 
+[SendGrid]
+API_User =
+API_Key =
+
 [Constants]
 Tweets_Per_Hour =

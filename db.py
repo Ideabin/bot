@@ -84,4 +84,21 @@ def create_tables(con):
         """
     )
 
+    cur.execute(
+        """
+        CREATE TABLE IF NOT EXISTS id_value (
+            tweet_id    INT ( 20 )   PRIMARY KEY
+        );
+        """
+    )
+
+    cur.execute(
+        """
+        CREATE TABLE IF NOT EXISTS retweets (
+            retweet_id   INT( 20 )   UNIQUE,
+            retweeted_at    TIMESTAMP   PRIMARY KEY
+        );
+        """
+    )
+
     con.commit()
