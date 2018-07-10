@@ -29,3 +29,9 @@ We've thought of one more bot that we still have to do:
 This bot will send out dail or weekly mails (to the people who want them) which will contain a summary of ideas that have been added during that period.
 
 @akifkhan suggested the use of Send Grid's API to send mails, so we could look into it.
+
+---
+
+**Names**
+
+The bots are named after [@dufferZafar](http://github.com/dufferzafar/)'s cousin sisters: Iqra, Ziqra, Bushra, Azeema.
